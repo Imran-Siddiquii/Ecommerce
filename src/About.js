@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import HeroSection from "./Header/HeroSection";
-const data = { name: "Store" };
+const data = { name: "Wish Store" };
 const About = () => {
   return (
     <Wrapper>

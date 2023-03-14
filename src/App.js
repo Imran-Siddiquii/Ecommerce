@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { router } from "./Router";
-import { Header } from "./Header/Header";
+import { Header } from "./components/Header";
+import Footer from "./components/Footer";
 const theme = {
   colors: {
     heading: "rgb(24,24,29",
@@ -11,7 +12,7 @@ const theme = {
     white: "#ffff",
     black: "#212529",
     helper: "#8490ff",
-    bg: "#0000",
+    bg: "#F6F8FA",
     footer_bg: "#0a1435",
     btn: "rgb(98,84,243)",
     border: "rgb(98,84,243,0.5)",
@@ -59,6 +60,7 @@ const App = () => {
                 />
               ))}
             </Routes>
+            <Footer />
           </Suspense>
         </Router>
       </ThemeProvider>
