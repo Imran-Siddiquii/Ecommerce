@@ -1,7 +1,16 @@
 import React from "react";
-
+import styled from "styled-components";
+import HeroSection from "./Header/HeroSection";
+const data = { name: "Store" };
 const About = () => {
-  return <div>About</div>;
+  return (
+    <Wrapper>
+      <HeroSection myData={data} />
+    </Wrapper>
+  );
 };
-
+const Wrapper = styled.section`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.bg};
+`;
 export default About;
