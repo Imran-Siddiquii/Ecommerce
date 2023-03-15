@@ -17,7 +17,7 @@ export const router = [
     component: lazy(() => import("./Contact")),
   },
   {
-    path: "/single-product:id",
+    path: "/single-product/:id",
     exact: true,
     component: lazy(() => import("./SingleProduct")),
   },

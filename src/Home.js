@@ -1,25 +1,18 @@
 import React from "react";
-// import styled from "styled-components";
 import Services from "./components/Services";
 import Trusted from "./components/Trusted";
-import HeroSection from "./Header/HeroSection";
+import HeroSection from "./components/HeroSection";
+import FeatureProduct from "./components/FeatureProducts";
 const data = { name: "Wish Store" };
 const Home = () => {
-  // const Name = ContextApiHook();
   return (
     <>
-      {/* // <Wrapper> */}
-      {/* <h1>{Name}</h1> */}
       <HeroSection myData={data} />
+      <FeatureProduct />
       <Services />
       <Trusted />
-      {/* // </Wrapper> */}
     </>
   );
 };
-// const Wrapper = styled.section`
-//   height: 100vh;
-//   background-color: ${({ theme }) => theme.colors.bg};
-// `;
 
 export default Home;

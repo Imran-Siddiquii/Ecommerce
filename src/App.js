@@ -1,10 +1,18 @@
-import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  ScrollRestoration,
+} from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { router } from "./Router";
 import { Header } from "./components/Header";
 import Footer from "./components/Footer";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "./Redux/Reducers/Products";
+import ScrollToTop from "./components/ScrollToTop";
 const theme = {
   colors: {
     heading: "rgb(24,24,29",
@@ -26,10 +34,21 @@ const theme = {
   media: { mobile: "768px", tab: "998px" },
 };
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Router>
+          <ScrollToTop />
+          {/* <ScrollRestoration
+            getKey={(location) => {
+              return location.pathname;
+            }}
+          /> */}
           <GlobalStyle />
           <Suspense
             fallback={

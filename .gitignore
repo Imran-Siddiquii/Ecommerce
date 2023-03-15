@@ -8,9 +8,15 @@
 # testing
 /coverage
 
+.vscode
 # production
 /build
-
+.idea/
+.vs/
+.env
+.pk
+.pem
+.pub
 # misc
 .env
 .DS_Store
