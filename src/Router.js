@@ -21,11 +21,11 @@ export const router = [
     exact: true,
     component: lazy(() => import("./SingleProduct")),
   },
-  {
-    path: "/cart",
-    exact: true,
-    component: lazy(() => import("./Cart")),
-  },
+  // {
+  //   path: "/cart",
+  //   exact: true,
+  //   component: lazy(() => import("./Cart")),
+  // },
   {
     path: "*",
     exact: true,

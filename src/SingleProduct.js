@@ -9,6 +9,8 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import styled from "styled-components";
 import PageNavigation from "./components/PageNavigation";
+import Stars from "./components/Stars";
+import AddToCart from "./components/AddToCart";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -51,8 +53,9 @@ const SingleProduct = () => {
           {/* product dAta  */}
           <div className="product-data">
             <h2>{name}</h2>
-            <p>{stars}</p>
-            <p>{reviews} reviews</p>
+
+            <Stars stars={stars} review={reviews} />
+
             <p className="product-data-price">
               MRP:
               <del>
@@ -97,6 +100,8 @@ const SingleProduct = () => {
                 Brand :<span> {company} </span>
               </p>
             </div>
+            <hr />
+            {stock > 0 && <AddToCart product={singleProducts} />}
           </div>
         </div>
       </Container>
