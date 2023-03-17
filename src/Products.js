@@ -1,10 +1,19 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FilterSection from "./components/FilterSection";
 import ProductList from "./components/ProductList";
 import Sort from "./components/Sort";
-import { useFilterContext } from "./context/filter_context";
+import { filterProducts } from "./Redux/Reducers/FIlterProductsSlice";
 
 const Products = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.allProducts);
+
+  useEffect(() => {
+    dispatch(filterProducts(products));
+  }, [products]);
+
   return (
     <Wrapper>
       <div className="container grid grid-filter-column">
