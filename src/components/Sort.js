@@ -1,55 +1,69 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BsFillGridFill, BsList } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Grid_View,
+  List_View,
+  sorting,
+} from "../Redux/Reducers/FIlterProductsSlice";
 // import { useFilterContext } from "../context/filter_context";
 
 const Sort = () => {
-  // const { filter_products, grid_view, setGridView, setListView, sorting } =   useFilterContext();
+  const dispatch = useDispatch();
+  const { filter_products, grid_view } = useSelector(
+    (state) => state.filter_products
+  );
+
   return (
-    <>sort</>
-    // <Wrapper className="sort-section">
-    //   {/* 1st column  */}
-    //   <div className="sorting-list--grid">
-    //     <button
-    //       className={grid_view ? "active sort-btn" : "sort-btn"}
-    //       onClick={setGridView}
-    //     >
-    //       <BsFillGridFill className="icon" />
-    //     </button>
+    <Wrapper className="sort-section">
+      {/* 1st column  */}
+      <div className="sorting-list--grid">
+        <button
+          className={grid_view ? "active sort-btn" : "sort-btn"}
+          onClick={() => dispatch(Grid_View(true))}
+        >
+          <BsFillGridFill className="icon" />
+        </button>
 
-    //     <button
-    //       className={!grid_view ? "active sort-btn" : " sort-btn"}
-    //       onClick={setListView}
-    //     >
-    //       <BsList className="icon" />
-    //     </button>
-    //   </div>
-    //   {/* 2nd column  */}
-    //   <div className="product-data">
-    //     <p>{`${filter_products.length} Product Available`}</p>
-    //   </div>
+        <button
+          className={!grid_view ? "active sort-btn" : " sort-btn"}
+          onClick={() => dispatch(List_View(false))}
+        >
+          <BsList className="icon" />
+        </button>
+      </div>
+      {/* 2nd column  */}
+      <div className="product-data">
+        <p>{`${filter_products.length} Product Available`}</p>
+      </div>
 
-    //   {/* 3rd column  */}
-    //   <div className="sort-selection">
-    //     <form action="#">
-    //       <label htmlFor="sort"></label>
-    //       <select
-    //         name="sort"
-    //         id="sort"
-    //         className="sort-selection--style"
-    //         onClick={sorting}
-    //       >
-    //         <option value="lowest">Price(lowest)</option>
-    //         <option value="#" disabled></option>
-    //         <option value="highest">Price(highest)</option>
-    //         <option value="#" disabled></option>
-    //         <option value="a-z">Price(a-z)</option>
-    //         <option value="#" disabled></option>
-    //         <option value="z-a">Price(z-a)</option>
-    //       </select>
-    //     </form>
-    //   </div>
-    // </Wrapper>
+      {/* 3rd column  */}
+      <div className="sort-selection">
+        <form action="#">
+          <label htmlFor="sort"></label>
+          <select
+            name="sort"
+            id="sort"
+            className="sort-selection--style"
+            // onClick={sorting}
+            onChange={(e) =>
+              dispatch(sorting({ value: e.target.value, filter_products }))
+            }
+          >
+            <option value="default">Default</option>
+            <option value="#" disabled></option>
+            <option value="lowest">Price(lowest)</option>
+            <option value="#" disabled></option>
+            <option value="highest">Price(highest)</option>
+            <option value="#" disabled></option>
+            <option value="a-z">Price(a-z)</option>
+            <option value="#" disabled></option>
+            <option value="z-a">Price(z-a)</option>
+          </select>
+        </form>
+      </div>
+    </Wrapper>
   );
 };
 

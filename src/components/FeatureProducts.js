@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Product from "./Product";
 
-const FeatureProduct = ({ allproducts }) => {
-  console.log("props", allproducts);
+const FeatureProduct = () => {
   const { isLoading, featuredProduct, products } = useSelector(
     (state) => state.allProducts
   );
@@ -16,17 +15,11 @@ const FeatureProduct = ({ allproducts }) => {
     <Wrapper className="section">
       <div className="container">
         <div className="intro-data">Check Now!</div>
-        <div className="common-heading">
-          {allproducts ? "All Products" : "Our Feature Services"}
-        </div>
+        <div className="common-heading">Our Feature Services</div>
         <div className="grid grid-three-column">
-          {allproducts
-            ? products?.map((curElem) => {
-                return <Product key={curElem.id} {...curElem} />;
-              })
-            : featuredProduct.map((curElem) => {
-                return <Product key={curElem.id} {...curElem} />;
-              })}
+          {featuredProduct.map((curElem) => {
+            return <Product key={curElem.id} {...curElem} />;
+          })}
         </div>
       </div>
     </Wrapper>
