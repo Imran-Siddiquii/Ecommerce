@@ -6,7 +6,7 @@ import {
   Grid_View,
   List_View,
   sorting,
-} from "../Redux/Reducers/FIlterProductsSlice";
+} from "../Redux/Reducers/FilterProductsSlice";
 // import { useFilterContext } from "../context/filter_context";
 
 const Sort = () => {

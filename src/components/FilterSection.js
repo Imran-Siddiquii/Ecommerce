@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
 import {
+  clearFilter,
   search_filter,
-  search_filter_category,
-  search_filter_color,
-  search_filter_company,
-} from "../Redux/Reducers/FIlterProductsSlice";
+} from "../Redux/Reducers/FilterProductsSlice";
+import { Button } from "../styles/Button";
 
 const FilterSection = () => {
   const dispatch = useDispatch();
@@ -30,6 +29,14 @@ const FilterSection = () => {
   const getUniqueCompany = uniqueValue(all_products, "company");
   const getUniqueColor = uniqueValue(all_products, "colors");
 
+  // dispatching function to filter
+
+  const filterData = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    dispatch(search_filter({ name, value }));
+  };
+
   // console.log(color, getUniqueColor);
   return (
     <Wrapper>
@@ -40,7 +47,7 @@ const FilterSection = () => {
             value={text}
             name="text"
             placeholder="Search"
-            onChange={(e) => dispatch(search_filter(e.target.value))}
+            onChange={filterData}
           />
         </form>
       </div>
@@ -56,7 +63,7 @@ const FilterSection = () => {
                 name="category"
                 value={curElem}
                 className={curElem === category ? "active" : ""}
-                onClick={(e) => dispatch(search_filter(e))}
+                onClick={filterData}
               >
                 {curElem}
               </button>
@@ -73,7 +80,7 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-            onChange={(e) => dispatch(search_filter_company(e.target.value))}
+            onChange={filterData}
           >
             {getUniqueCompany.map((curElem, index) => {
               return (
@@ -116,7 +123,7 @@ const FilterSection = () => {
                   value={curColor}
                   name="color"
                   className="color-all--style"
-                  onClick={() => dispatch(search_filter_color(curColor))}
+                  onClick={filterData}
                 >
                   All
                 </button>
@@ -130,7 +137,7 @@ const FilterSection = () => {
                 name="color"
                 style={{ backgroundColor: curColor }}
                 className={color === curColor ? "btnStyle active" : "btnStyle"}
-                onClick={() => dispatch(search_filter_color(curColor))}
+                onClick={filterData}
               >
                 {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
@@ -138,6 +145,9 @@ const FilterSection = () => {
           })}
         </div>
       </div>
+      <Button className="clear" onClick={() => dispatch(clearFilter())}>
+        Clear Filter
+      </Button>
     </Wrapper>
   );
 };

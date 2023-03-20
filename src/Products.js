@@ -4,7 +4,7 @@ import styled from "styled-components";
 import FilterSection from "./components/FilterSection";
 import ProductList from "./components/ProductList";
 import Sort from "./components/Sort";
-import { filterProducts } from "./Redux/Reducers/FIlterProductsSlice";
+import { filterProducts } from "./Redux/Reducers/FilterProductsSlice";
 
 const Products = () => {
   const dispatch = useDispatch();
