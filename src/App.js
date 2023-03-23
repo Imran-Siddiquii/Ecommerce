@@ -1,10 +1,6 @@
 import React, { Suspense, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  ScrollRestoration,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { router } from "./Router";
@@ -13,6 +9,7 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "./Redux/Reducers/Products";
 import ScrollToTop from "./components/ScrollToTop";
+import Loader from "./components/Loader";
 const theme = {
   colors: {
     heading: "rgb(24,24,29",
@@ -50,24 +47,7 @@ const App = () => {
             }}
           /> */}
           <GlobalStyle />
-          <Suspense
-            fallback={
-              <div
-                className="App-header"
-                style={{
-                  minHeight: "100vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "calc(10px + 2vmin)",
-                  color: "black",
-                }}
-              >
-                Loading......
-              </div>
-            }
-          >
+          <Suspense fallback={<Loader />}>
             <Header />
             <Routes>
               {router.map((route, index) => (

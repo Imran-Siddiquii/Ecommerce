@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import FilterSection from "./components/FilterSection";
+import Loader from "./components/Loader";
 import ProductList from "./components/ProductList";
 import Sort from "./components/Sort";
 import { filterProducts } from "./Redux/Reducers/FilterProductsSlice";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.allProducts);
+  const { products, isLoading } = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(filterProducts(products));
@@ -16,20 +17,24 @@ const Products = () => {
 
   return (
     <Wrapper>
-      <div className="container grid grid-filter-column">
-        <div>
-          <FilterSection />
-        </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="container grid grid-filter-column">
+          <div>
+            <FilterSection />
+          </div>
 
-        <section className="product-view--sort">
-          <div className="sort-filter">
-            <Sort />
-          </div>
-          <div className="main-product">
-            <ProductList />
-          </div>
-        </section>
-      </div>
+          <section className="product-view--sort">
+            <div className="sort-filter">
+              <Sort />
+            </div>
+            <div className="main-product">
+              <ProductList />
+            </div>
+          </section>
+        </div>
+      )}
     </Wrapper>
   );
 };

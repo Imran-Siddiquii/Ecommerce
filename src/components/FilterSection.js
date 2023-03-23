@@ -7,12 +7,13 @@ import {
   search_filter,
 } from "../Redux/Reducers/FilterProductsSlice";
 import { Button } from "../styles/Button";
+import FormatPrice from "../Helpers/FormatPrice";
 
 const FilterSection = () => {
   const dispatch = useDispatch();
   const {
     all_products,
-    searchFilter: { text, category, color },
+    searchFilter: { text, category, company, color, minPrice, maxPrice, price },
   } = useSelector((state) => state.filter_products);
 
   // function to get unique value
@@ -79,6 +80,7 @@ const FilterSection = () => {
           <select
             name="company"
             id="company"
+            value={company}
             className="filter-company--select"
             onChange={filterData}
           >
@@ -145,9 +147,28 @@ const FilterSection = () => {
           })}
         </div>
       </div>
-      <Button className="clear" onClick={() => dispatch(clearFilter())}>
-        Clear Filter
-      </Button>
+      <div>
+        <div className="filter_price">
+          <h3>Price</h3>
+          <p>
+            <FormatPrice price={price} />
+          </p>
+
+          <input
+            type="range"
+            name="price"
+            value={price}
+            min={minPrice}
+            max={maxPrice}
+            onChange={filterData}
+          />
+        </div>
+        <div className="filter-clear">
+          <Button className="btn" onClick={() => dispatch(clearFilter())}>
+            Clear Filters
+          </Button>
+        </div>
+      </div>
     </Wrapper>
   );
 };

@@ -11,14 +11,24 @@ const FilterProdutsSlice = createSlice({
       category: "All",
       color: "All",
       company: "All",
+      maxPrice: 0,
+      minPrice: 0,
+      price: 0,
     },
   },
   reducers: {
-    filterProducts: (state, { payload }) => ({
-      ...state,
-      filter_products: payload,
-      all_products: payload,
-    }),
+    filterProducts: (state, { payload }) => {
+      // price and max price
+      let findPrice = payload.map((ele) => ele.price);
+      let maxPrice = Math.max(...findPrice);
+      let filterArray = state.searchFilter;
+      return (state = {
+        ...state,
+        filter_products: payload,
+        all_products: payload,
+        searchFilter: { ...filterArray, maxPrice: maxPrice, price: maxPrice },
+      });
+    },
     Grid_View: (state, payload) => {
       state.grid_view = payload;
     },
@@ -49,9 +59,13 @@ const FilterProdutsSlice = createSlice({
     //for filter data search
     search_filter: (state, action) => {
       let filterProductsArray = [...state.all_products];
+      let findPrice = filterProductsArray.map((ele) => ele.price);
+      let maxPrice = Math.max(...findPrice);
+      state.searchFilter = { ...state.searchFilter, maxPrice, price: maxPrice };
+      console.log(maxPrice, "maxprice");
       const { name, value } = action.payload;
       state.searchFilter[name] = value;
-      const { text, category, color, company } = state.searchFilter;
+      const { text, category, color, company, price } = state.searchFilter;
 
       if (text) {
         filterProductsArray = filterProductsArray.filter((curElem) =>
@@ -73,6 +87,15 @@ const FilterProdutsSlice = createSlice({
           curElem?.company.toLowerCase().includes(company)
         );
       }
+      if (price === 0) {
+        filterProductsArray = filterProductsArray.filter(
+          (curElem) => curElem?.price === price
+        );
+      } else {
+        filterProductsArray = filterProductsArray.filter(
+          (curElem) => curElem?.price <= price
+        );
+      }
       state.filter_products = filterProductsArray;
     },
     clearFilter: (state, action) => {
@@ -82,6 +105,9 @@ const FilterProdutsSlice = createSlice({
         color: "All",
         category: "All",
         company: "All",
+        minPrice: 0,
+        price: state.searchFilter.maxPrice,
+        maxPrice: state.searchFilter.maxPrice,
       };
       state.filter_products = filterProductsArray;
     },
