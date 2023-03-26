@@ -13,6 +13,7 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(filterProducts(products));
+    // eslint-disable-next-line
   }, [products]);
 
   return (

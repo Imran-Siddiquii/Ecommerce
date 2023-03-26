@@ -34,7 +34,7 @@ const FilterSection = () => {
 
   const filterData = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     dispatch(search_filter({ name, value }));
   };
 

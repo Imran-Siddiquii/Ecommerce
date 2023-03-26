@@ -4,8 +4,11 @@ import { FaCheck } from "react-icons/fa";
 import CartAmountToggle from "./CartAmountToggle";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Redux/Reducers/AddToCartSlice";
 
 const AddToCart = ({ product }) => {
+  const dispatch = useDispatch();
   const { id, colors, stock } = product;
 
   const [color, setColor] = useState(colors[0]);
@@ -41,13 +44,19 @@ const AddToCart = ({ product }) => {
 
       {/* add to cart  */}
       <CartAmountToggle
+        stock={stock}
         amount={amount}
         setDecrease={setDecrease}
         setIncrease={setIncrease}
       />
 
       <NavLink to="/cart">
-        <Button className="btn">Add To Cart</Button>
+        <Button
+          className="btn"
+          onClick={() => dispatch(addItem({ id, amount, color, product }))}
+        >
+          Add To Cart
+        </Button>
       </NavLink>
     </Wrapper>
   );

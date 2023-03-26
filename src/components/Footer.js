@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
-import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -17,7 +23,7 @@ const Footer = () => {
 
             <div>
               <Button className="btn hireme-btn">
-                <NavLink to="/"> Get Started </NavLink>
+                <NavLink to="/contact"> Get Started </NavLink>
               </Button>
             </div>
           </div>
@@ -32,7 +38,7 @@ const Footer = () => {
             </div>
             <div className="footer-subscribe">
               <h3>Subscribe to get important updates</h3>
-              <form action="https://formspree.io/f/mrgvloww">
+              <form action="https://formspree.io/f/mrgvloww" method="POST">
                 <input type="email" name="email" placeholder="YOUR E-MAIL" />
 
                 <input type="submit" value="subscribe" />
@@ -42,26 +48,60 @@ const Footer = () => {
               <h3>Follow Us</h3>
               <div className="footer-social--icons">
                 <div>
-                  <FaDiscord className="icons" />
-                </div>
-                <div>
-                  <FaInstagram className="icons" />
+                  <a
+                    alt=""
+                    href="https://discord.com/users/918243307467989072"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaDiscord className="icons" />
+                  </a>
                 </div>
                 <div>
                   <a
                     alt=""
-                    href="https://www.youtube.com/"
+                    href="https://www.facebook.com/profile.php?id=100012466931790"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <FaYoutube className="icons" />
+                    <FaFacebook className="icons" />
+                  </a>
+                </div>
+                <div>
+                  <a
+                    alt=""
+                    href="https://www.linkedin.com/in/imran-siddiqui-45aa50174/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaLinkedinIn className="icons" />
+                  </a>
+                </div>
+                <div>
+                  <a
+                    alt=""
+                    href="https://twitter.com/siddiquiimran15"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaTwitter className="icons" />
+                  </a>
+                </div>
+                <div>
+                  <a
+                    alt=""
+                    href="https://github.com/Imran-Siddiquii"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaGithub className="icons" />
                   </a>
                 </div>
               </div>
             </div>
             <div className="footer-contact">
               <h3>Call Us</h3>
-              <h3>+91 12345678978</h3>
+              <h3>+91 8310948934</h3>
             </div>
           </div>
 

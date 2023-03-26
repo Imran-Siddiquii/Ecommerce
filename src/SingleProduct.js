@@ -11,33 +11,39 @@ import styled from "styled-components";
 import PageNavigation from "./components/PageNavigation";
 import Stars from "./components/Stars";
 import AddToCart from "./components/AddToCart";
+import Loader from "./components/Loader";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchSingleProducts(id));
+    // eslint-disable-next-line
   }, [id]);
 
-  const { singleProducts, singleProductsLoading, isError } = useSelector(
+  const { singleProducts, singleProductsLoading } = useSelector(
     (state) => state.singleProduct
   );
   const {
     name,
-    id: alias,
+    // id: alias,
     price,
     company,
-    colors,
+    // colors,
     description,
-    category,
+    // category,
     stock,
     stars,
     reviews,
     image,
   } = singleProducts;
-  console.log(singleProducts, "data");
+  // console.log(singleProducts, "data");
   if (singleProductsLoading) {
-    return <div className="page_loading">Loading.....</div>;
+    return (
+      <div className="page_loading">
+        <Loader />
+      </div>
+    );
   }
 
   return (

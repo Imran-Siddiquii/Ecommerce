@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Product from "./Product";
 
 const FeatureProduct = () => {
-  const { isLoading, featuredProduct, products } = useSelector(
+  const { isLoading, featuredProduct } = useSelector(
     (state) => state.allProducts
   );
-  console.log("isLoading", isLoading, featuredProduct);
+  // console.log("isLoading", isLoading, featuredProduct);
   if (isLoading) {
     return <div> ......Loading </div>;
   }

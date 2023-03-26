@@ -34,6 +34,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
+    // eslint-disable-next-line
   }, []);
 
   return (

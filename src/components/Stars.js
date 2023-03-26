@@ -1,5 +1,5 @@
 import React from "react";
-import { FaStarHalfAlt, BsStarHalf } from "react-icons/bs";
+import { BsStarHalf } from "react-icons/bs";
 
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import styled from "styled-components";

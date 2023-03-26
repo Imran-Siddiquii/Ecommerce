@@ -62,7 +62,7 @@ const FilterProdutsSlice = createSlice({
       let findPrice = filterProductsArray.map((ele) => ele.price);
       let maxPrice = Math.max(...findPrice);
       state.searchFilter = { ...state.searchFilter, maxPrice, price: maxPrice };
-      console.log(maxPrice, "maxprice");
+      // console.log(maxPrice, "maxprice");
       const { name, value } = action.payload;
       state.searchFilter[name] = value;
       const { text, category, color, company, price } = state.searchFilter;
