@@ -22,7 +22,7 @@ const Cart = () => {
     dispatch(totalPrice());
     // eslint-disable-next-line
   }, [cart]);
-  if (cart.length === 0) {
+  if (cart?.length === 0) {
     return (
       <EmptyDiv>
         <h3>No Items In Cart </h3>

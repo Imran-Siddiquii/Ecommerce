@@ -22,7 +22,7 @@ const AddToCartSlice = createSlice({
 
       // if same item is present in the Cart
 
-      const findItemInCart = state.cart.find((ele) => ele.id === id + color);
+      const findItemInCart = state?.cart?.find((ele) => ele.id === id + color);
 
       if (findItemInCart) {
         const increaseQuentity = state.cart.map((ele) => {
