@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const getLocalStorage = () => {
   let localProduct = localStorage.getItem("CartData");
-  if (localProduct === []) {
+  if (!localProduct) {
     return [];
   } else {
-    return JSON.parse(localProduct);
+    return JSON?.parse(localProduct);
   }
 };
 const AddToCartSlice = createSlice({

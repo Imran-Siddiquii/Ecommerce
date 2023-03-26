@@ -45,7 +45,7 @@ const Cart = () => {
         <hr />
 
         <div className="cart-item">
-          {cart.map((curElem) => {
+          {cart?.map((curElem) => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
