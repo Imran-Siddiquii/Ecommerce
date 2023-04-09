@@ -32,6 +32,43 @@ const Cart = () => {
       </EmptyDiv>
     );
   }
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+  const checkOut = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    console.log("res", res);
+    if (!res) {
+      alert("please api is not giveing response");
+      return;
+    }
+    const options = {
+      key: "rzp_test_B2hkpWcDpvmbUL",
+      currency: "INR",
+      amount: total_price + shipping_fee,
+      name: "Wish Store",
+      description: "Thank for purchasing",
+      handler: (response) => {
+        console.log(response.razorpay_payment_id);
+        alert("paymnet id", response.razorpay_payment_id);
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
   return (
     <Wrapper>
       <div className="container">
@@ -80,6 +117,9 @@ const Cart = () => {
               <FormatPrice price={shipping_fee + total_price} />
             </p>
           </div>
+          <button className="btn btn-clear" onClick={checkOut}>
+            Checkout
+          </button>
         </div>
       </div>
     </Wrapper>
@@ -207,13 +247,12 @@ const Wrapper = styled.section`
   }
 
   .order-total--amount {
-    width: 100%;
     margin: 4.8rem 0;
     text-transform: capitalize;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 
     .order-total--subdata {
       border: 0.1rem solid #f0f0f0;
@@ -225,7 +264,7 @@ const Wrapper = styled.section`
     div {
       display: flex;
       gap: 3.2rem;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     div:last-child {
